@@ -17,8 +17,8 @@ Although most of these examples can be done in the REPL it might be a lot easier
 Save it and from the command line type 
 	node helloworld.js
 That's it. Go ahead and advance to section one of this lesson, Ecmascript 5. 
-[1]: ecmascript5
-[2]: globals
-[3]: process
-[4]: timers
-[5]: Buffers
+[1]: ecmascript5/
+[2]: globals/
+[3]: process/
+[4]: timers/
+[5]: Buffers/
