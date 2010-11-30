@@ -1,6 +1,7 @@
 # Lesson 2 - The Basics
 
 This lesson is divided up into small portions to cover "the basics". This includes
+
 * [Ecmascript 5] [1]
 * [globals] [2]
 * [process] [3]
