@@ -32,4 +32,4 @@ You're now good to go on with the rest of the tutorial. Feel free to play around
 
 [1]: https://github.com/ry/node/wiki/Building-node.js-on-Cygwin-(Windows)
 [2]: https://github.com/ry/node/wiki/Quick-and-easy-installation
-[3]: lesson2-basics/
+[3]: ../lesson2-basics/
