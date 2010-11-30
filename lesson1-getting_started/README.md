@@ -27,8 +27,9 @@ Given the installation has completed successfully you should now have a node bin
 	> console.log('hello world')
 	hello world
 
-You're now good to go on with the rest of the tutorial. Feel free to play around with the REPL interface a bit, otherwise move on to lesson 2.
+You're now good to go on with the rest of the tutorial. Feel free to play around with the REPL interface a bit, otherwise move on to [lesson 2] [3].
 
 
 [1]: https://github.com/ry/node/wiki/Building-node.js-on-Cygwin-(Windows)
 [2]: https://github.com/ry/node/wiki/Quick-and-easy-installation
+[3]: lesson2-basics/
