@@ -117,8 +117,8 @@ In a previous example I used the Array method reduce with the promise that I'd c
 
 Let's start in with the forEach method. This takes a callback function that is called for each element of the array and accepts two arguments: the current element being iterated over and its index within the array. For an example:
 
-[9,2,3,10].forEach(function(number, index){
-	console.log(number + " is in index " + index);
-});
+	[9,2,3,10].forEach(function(number, index){
+		console.log(number + " is in index " + index);
+	});
 
 
