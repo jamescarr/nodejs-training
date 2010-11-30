@@ -56,9 +56,11 @@ This also allows for creating functions that can have a variable number of argum
 	
 	console.log(sum(2,3,9,4,2));
 
-Now let us also cover the two alternative ways to invoke a function rather than just calling it directly. We could change the previous example to take advantage of an existing method on Array named reduce (which we will cover later) by invoking call on the function (which takes a first argument to represent the scope of this and followed by variable number of arguments to pass to it). 
+Now let us also cover the two alternative ways to invoke a function rather than just calling it directly. We could change the previous example to take advantage of an existing method on Array named reduce (which we will cover later) by invoking call on the function (which takes a first argument to represent the scope of this and followed by variable number of arguments to pass to it).
+
+ 
 	function sum(){
-		var reduce = Arrray.prototype.reduce; 
+		var reduce = Array.prototype.reduce; 
 		return reduce.call(arguments, function(a,b){
 			return a+b;
 		}, 0);	
@@ -66,4 +68,45 @@ Now let us also cover the two alternative ways to invoke a function rather than 
 
 	console.log(sum(9,2,3,4,1));
 
+It's okay if this is a little confusing... the idea here is that the first argument to call is replacing references to "this" in an existing function (reduce) which normally points to an actual array when called on an array instance. Here's a slightly contrived example:
+	
+	function concat(a){
+		return this +" "+ a;
+	}
+	
+	console.log(concat("World"));
+	
+	console.log(concat.call("Hello", "World"));
 
+When you run this, the first log will print '[object global] World' because by default this will resolve to the global scope if the function isn't attached to any prototype or object (we'll cover this in detail later). The second one on the other prints 'Hello World' because we've set the context of this to be "Hello". 
+
+The second way of invoking a method is by calling apply, which like call takes a context for "this" as a first parameter and then takes an argument object for the second parameter. This is quite useful for passing arguments through to another function when they're unknown. As an example, say we want to produce the square of a sum of numbers.
+	
+	function squareOfSum(){
+		var sumOfNumbers = sum.apply(null, arguments);
+		return sumOfNumbers * sumOfNumbers;
+	}
+	
+	console.log(squareOfSum(2,3,4,5));
+
+One other interesting concept to cover is the functions that return functions and function scope. Here's an interesting example function that returns a new function that can add to a running sum:
+	
+	function createSum(a){
+		return function(b){
+			return a += b
+		}
+	}
+
+	var update = createSum(3);
+	
+	console.log(update(10));
+	console.log(update(5));
+
+	console.log(createSum(3)(4));
+
+#### New Ecmascript 5 Feature
+Finally, let's close this refresher on functions with a new feature available as part of ES5 in node.js. bind() allows you to create partial functions by binding values to the parameters and creating a new function. In the real world this can be useful when you want to use an existing function by default the first parameter to some value because it always gets that value passed in. 
+
+	var fivePlus = sum.bind(5);
+	
+	console.log(fivePlus(10));
