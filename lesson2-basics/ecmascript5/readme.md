@@ -89,6 +89,14 @@ The second way of invoking a method is by calling apply, which like call takes a
 	
 	console.log(squareOfSum(2,3,4,5));
 
+Arguments also has an attribute that refers to the current function, named callee. callee can be useful if it is desired to perform recursion but there's no expectation of the current function's name (or it might in fact be anonymous). Here's an example of recursively computing a factorial.
+
+	var factorial = (function(a){
+		return x > 1? x * arguments.callee(x-1) : 1;
+	})(6);
+	
+	console.log(factorial); // 720
+
 One other interesting concept to cover is the functions that return functions and function scope. Here's an interesting example function that returns a new function that can add to a running sum:
 	
 	function createSum(a){
