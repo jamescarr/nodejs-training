@@ -139,3 +139,54 @@ Or summing a list of numbers, setting the initial value to 1
 			return a + b;
 		}, 1);
 
+This also has a companion method, reduceRight(), which has the same behavior except that it works from right to left instead of left to right.
+
+Arrays are also filterable via the filter() method, which returns a collection contsining elements of which the callback returned true for. For example, to return an array of all even numbers and an array of all even indexes:
+	
+	var evenNumbers = [1,4,8,9,10].filter(function(num){
+		return num % 2 == 0;
+	});
+	
+	console.log("even numbers: " + evenNumbers);
+
+	console.log("even indexes: " + [1,4,8,9,10].filter(function(num, index){
+		return index % 2 == 0;
+	}));
+
+There are also two method that return true based on whether the provided predicate is true for some or all the elements in the array. For example, to determine if some or all of the elements in an array are even:
+	
+	if([1,2,3].some(function(a){ return a % 2 == 0})){
+		console.log("some of the numbers are even");
+	}
+	
+	if([4,2,8].every(function(a){ return a % 2 == 0})){
+		console.log("all of the numbers are even");
+	}
+
+Two final methods I'd like to cover that aren't part of ES5 Array Extras but are just useful methods overall are shift and unshift. Shift will remove the first element from the array and return it, while unshift prepends to it. 
+	
+	var x = [1,2];
+	x.unshift(3);
+	console.log(x);
+	
+	console.log(x.shift());
+	console.log(x);
+
+
+### JSON
+This isn't too earth changing and if you're familiar with javascript chances are you've used it for quite awhile. JSON is a global object that contains two methods for serializing and unserializing javascript objects from JSON strings which is useful for transfering them between different processes or between client and server. For example:
+
+	// serialize
+	var person = {name:"James", age:30},
+	  serialized = JSON.stringify(person),
+	  unserialized = JSON.parse(serialized);
+	
+	console.log(serialized);
+	console.log(unserialized);
+	console.log(unserialized.name);
+
+Just something useful to keep in mind is that if you are parsing a json string directly (say, from a file) make sure it adheres to the JSON format (meaning the keys must be quoted).
+
+### Object
+
+
