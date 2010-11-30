@@ -188,5 +188,122 @@ This isn't too earth changing and if you're familiar with javascript chances are
 Just something useful to keep in mind is that if you are parsing a json string directly (say, from a file) make sure it adheres to the JSON format (meaning the keys must be quoted).
 
 ### Object
+Before delving into the new Ecmascript 5 Object features let's quickly recap javascript objects and how to create them.
 
+#### Literal Object
+Literal objects are created in one fell swoop and only exist for that instance.
+	var person = {
+		name:'James', 
+		greet:function(){
+			return "My name is " + this.name;
+		}
+	};
+	
+	console.log(person.greet());
 
+	person.name = 'The Dude';
+
+	console.log(person.greet());
+
+#### Prototype Object
+
+	function Person(name){
+		this.name = name;
+	}
+	Person.prototype.greet = function(){
+		return "My name is " + this.name;
+	}
+
+	var dude = new Person("The Dude");
+	console.log(dude.name);
+	console.log(dude.greet());
+
+Here we create an object prototype that multiple instances can be created from using the new keyword. member variables can be assigned using this and methods can be created either by adding them to the prototype or by assigning them to this. The difference is that if they are added to the prototype outside of the constructor they are only defined once... if assigned to this inside the constructor then they will be defined for each new object created. The latter can be useful if you wanted to encapsulate a variable.
+
+	function Person(name){
+		this.greet = function(){
+			return "My name is " + name;
+		}
+	}
+	
+	var dude = new Person("James");
+	console.log(dude.name); // undefined, there is no property name
+	console.log(dude.greet());
+
+#### Immutability
+There are a few different ways to make objects immutable in javascript. You may have noticed that, by default, objects are completely mutable as we were able to change property values at any time. However there's a handy utility method on Object that "freezes" an object instance to prevent modiification.
+
+	var person = {name:'James', age:30};
+	
+	Object.freeze(person);
+	
+	person.age = 31;
+	
+	console.log(person.age); // prints 30, cannot be changed
+
+A certain gotcha (which exists with immutibility in general) is that while the property cannot be re-assigned, it's values can can change. For example, say we had an object with a property that contained an array.
+	
+	var deck = Object.freeze({cards:[1,2,3,4,5]});
+	
+	deck.cards = [1,2]; // doesn't work
+	console.log(deck.cards); // prints original array
+
+	deck.cards.unshift(6);
+	console.log(deck.cards); // prints array with new value on it
+	
+Another way to achieve immutibility is by defining a getter but no setter. Here's an example using __defineGetter__
+	function Person(name){
+		this.__defineGetter__('name', function(){
+			return name;
+		});
+	}
+	
+	var person = new Person('James');
+	console.log(person.name); 
+	
+	person.name = 'Jim'; // throws exception, no setter
+
+Since we're on the subject, lets cover ES5 getters and setters
+
+#### Getters / Setters
+ES5 provides some pretty nifty mechanisms for defining getters and setters if you want more fine grained control over how property access operates (as we saw with __defineGetter__). These are useful for creating readOnly properties as well as fined tuned setters. Here's a few illustrations.
+	
+	function Person(){
+		var name = '';
+		this.__defineSetter__('name', function(n){
+			name = n.toUpperCase();
+		});
+		
+		this.__defineGetter__('name', function(){
+			return name.toLowerCase();
+		});
+	}
+	
+	var person = new Person();
+	person.name = 'James';
+	console.log(person.name);
+	
+Or the object literal format
+	var site = {
+		host:'localhost'
+		,port:7010
+		,get location(){
+			return 'http://'+host+':'+port;
+		}
+		,set location(hostAndPort){
+			var parts = hostAndPort.replace("http://").split(':');
+			this.host = parts[0];
+			this.port = parts[1];
+		}
+	};
+
+	site.location = 'http://example.com:8080';
+	console.log(site.host);
+	console.log(site.port);
+	console.log(site.location);
+
+The literal notation can be a little intimidating, but it makes creating getter/setter methods nice and concise.
+
+#### Object.keys() and Object.getOwnPropertyNames()
+
+	
