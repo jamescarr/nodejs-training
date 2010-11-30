@@ -15,8 +15,8 @@ For this tutorial we will be using v0.2.5 rather than v0.3.0+ to avoid any poten
 
 Installation will vary based on your environment but luckily there is some really good documentation on the site to help with the installation process. Select your target environment below.
 
-	* Cygwin - https://github.com/ry/node/wiki/Building-node.js-on-Cygwin-(Windows)
-	* Mac OSX / Linux - https://github.com/ry/node/wiki/Quick-and-easy-installation
+* Cygwin - https://github.com/ry/node/wiki/Building-node.js-on-Cygwin-(Windows)
+* Mac OSX / Linux - https://github.com/ry/node/wiki/Quick-and-easy-installation
 
 Be wary of potential installation issues. See https://github.com/ry/node/wiki/Installation-Notes for some of the problems you may encounter and their solutions.
 
