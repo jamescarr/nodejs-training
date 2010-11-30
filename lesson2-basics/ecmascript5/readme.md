@@ -115,10 +115,27 @@ Finally, let's close this refresher on functions with a new feature available as
 
 In a previous example I used the Array method reduce with the promise that I'd cover it later and now I will. Ecmascript5 includes a handy new feature called Array Extras which are really just new methods added to Array to make it, well, cooler to work with. 
 
-Let's start in with the forEach method. This takes a callback function that is called for each element of the array and accepts two arguments: the current element being iterated over and its index within the array. For an example:
+Let's start in with the forEach method. This takes a callback function that is called for each element of the array and accepts three arguments: the current element being iterated over, its index within the array, and the actual array being traversed. For an example:
 
 	[9,2,3,10].forEach(function(number, index){
 		console.log(number + " is in index " + index);
 	});
 
+A common programming operation is to create a collection of elments from an existing collection. An order system might take an array of order ids and return an array of Order objects for example. The map() function is a simple way to create a new array that is a transformation of an existing array and its callback takes the same arguments that forEach's callback does. To illustrate this lets take an array of numbers and generate an array of their squares:
+	var squares = [1,2,3,4,5].map(function(a){
+		return a * a;
+	});
+	
+	console.log(squares);
+	
+Another common operation is to combine the elements of an array into a single value. The reduce() method does this by taking a callback that gets exececuted for each element, left to right. It also takes an optional initialValue to start off with. Here's an example of flattening an array of arrays.
+
+	var flattened = [[1,2], [3,2], [5,1]].reduce(function(previous, current, index, array){
+		return previous.concat(current);
+	});
+
+Or summing a list of numbers, setting the initial value to 1
+	console.log([1,2,3].reduce(function(a,b){
+			return a + b;
+		}, 1);
 
