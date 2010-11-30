@@ -15,8 +15,8 @@ For this tutorial we will be using v0.2.5 rather than v0.3.0+ to avoid any poten
 
 Installation will vary based on your environment but luckily there is some really good documentation on the site to help with the installation process. Select your target environment below.
 
-* Cygwin - https://github.com/ry/node/wiki/Building-node.js-on-Cygwin-(Windows)
-* Mac OSX / Linux - https://github.com/ry/node/wiki/Quick-and-easy-installation
+* [Instructions for Cygwin] [1] 
+* [Mac OSX / Linux] [2]
 
 Be wary of potential installation issues. See https://github.com/ry/node/wiki/Installation-Notes for some of the problems you may encounter and their solutions.
 
@@ -30,3 +30,5 @@ Given the installation has completed successfully you should now have a node bin
 You're now good to go on with the rest of the tutorial. Feel free to play around with the REPL interface a bit, otherwise move on to lesson 2.
 
 
+[1]: https://github.com/ry/node/wiki/Building-node.js-on-Cygwin-(Windows)
+[2]: https://github.com/ry/node/wiki/Quick-and-easy-installation
