@@ -132,11 +132,35 @@ process.nextTick takes a callback that will execute in the next "tick" allowing 
 	console.log(3);
 
 
-### process.compile
-Would be noice to cover this.
-
 ### Events
+There are several events that one can listen to on process (more on events later) which provide a useful way to "plug in" to different events the process can emit. Here are a few of them.
 
+#### exit
+Fired when the process is about to exit. The callback will execute right before exit so this eans that the event loop terminates after it finishes.
+
+	process.on('exit', function(){
+		setTimeout(function(){
+			console.log('this will never execute');
+		}, 1);
+		console.log("exitting...");
+	});
+
+#### uncaughtException
+This will get fired when an exception is thrown and finds its way to the event loop (which typically will crash the process and spit the exception out the console). If a listener is added for this event then the default behavior will not occur.
+
+	process.on('uncaughtException', function (err) {
+  		console.error('Caught exception: ' + err);
+	});
+	
+	var range = [1..10]; // this doesn't exist and causes an error
+	console.log('never executes');
+
+#### Signal Events
+You can also attach listeners onto the process for POSIX signal events as well.
+
+	process.on("SIGSEV", function(){
+		console.log("Process received a SIGSEV signal");
+	});
 ### Further Exploration
 There are a lot of other operations, go to the REPL and type process.[TAB] to see a list of other methods available, such as cwd(), kill, pid, and exit
 
