@@ -165,6 +165,8 @@ You can also attach listeners onto the process for POSIX signal events as well.
 There are a lot of other operations, go to the REPL and type process.[TAB] to see a list of other methods available, such as cwd(), kill, pid, and exit
 
 
+## module
 
+module is a very important global which also means that now is a good time to move on to lesson 3: modules.
 
 
