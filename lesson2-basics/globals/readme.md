@@ -56,12 +56,6 @@ To include a module, we can do the following:
 
 This will include the module and namespace it under the variable http. The variable that holds it doesn't have to be the same as the module name, but it is a common (and useful) convention. 
 
-This operation is synchronous and can alternatively be done asynchronously. Another benefit of this is that the module will be locally scoped to the callback. The callback takes two parameters: an Error if an error occurred importing the module (for example, file not found) and the module if provided. The presence of once means the other will be null.
-
-	require.async('http', function(err, http){
-		// do stuff with http here.
-	});
-
 When a module name is passed to require, it searches the require.path from the top down until it finds the module it is looking for. Go ahead and take a look at it:
 	
 	console.log(require.paths);
@@ -72,6 +66,10 @@ The require.paths can be added to to include additional directories to search fo
 	
 This isn't quite ideal as most of the time your modules and 3rd party modules will exist in the current working directory. Let's cover how to do that next.
 
+You can also instantiaite a module that is required by passing it to new(). Here's a common example of requiring EventEmitter and intantiating it right away.
+	var emitter = new(require('events').EventEmitter);
+
+This is handy for instances where you want to only create one instance of something.
 
 ## __filename and __dirname
 __filename and __dirname represent the filename of the executing script and the directory in which it resides, respectively. A very common use of __dirname is to include user scripts onto the require path relative from the current script directory. 

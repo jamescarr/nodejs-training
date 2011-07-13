@@ -4,11 +4,11 @@ Obviously you'll need node installed on your computer to actually learn it, so d
 ## Installing Node.js
 The official way to obtain node.js is to either clone the source repository for it from github or download the tarball from http://nodejs.org.
 
-For this tutorial we will be using v0.2.5 rather than v0.3.0+ to avoid any potential gotchas. 
+For this tutorial we will be using v0.4.9 rather than v0.5.0+ to avoid any potential gotchas. 
 
 ### Via git
 	git clone git://github.com/ry/node.git
-	git checkout v0.2.5 
+	git checkout v0.4.9 
 
 ### Via the site
 	Click the download link, extract to a directory and cd to it.

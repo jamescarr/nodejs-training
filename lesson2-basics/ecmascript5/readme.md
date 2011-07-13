@@ -304,4 +304,4 @@ Or the object literal format
 
 The literal notation can be a little intimidating, but it makes creating getter/setter methods nice and concise.
 
-	
+
